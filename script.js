@@ -74,16 +74,18 @@ function game() {
         playRound(playerSelection, computerSelection);
     }
 
-    // console.log(`Player score: ${playerScore}`);
-    // console.log(`Computer score: ${computerScore}`);
-    
     function determineWinner() {
+        const gameScore = console.log(`Player score: ${playerScore}`) +
+                          console.log(`Computer score: ${computerScore}`);
         if (playerScore === computerScore) {
             console.log("It's a tie game!")
+            return gameScore
         } else if (playerScore > computerScore) {
             console.log("You won the game! Congratulations!")
+            return gameScore
         } else {
-            console.log("You lost! Better luck next time!")
+            console.log("You lost the game! Better luck next time!")
+            return gameScore
         }
     }
 
