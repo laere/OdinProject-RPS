@@ -4,8 +4,6 @@ function game() {
     let playerScore = 0;
     //Create variable for computerscore
     let computerScore = 0;
-    //create a variable that tracks number of rounds
-    let gameRounds = 0;
 
     const buttons = document.querySelectorAll('button');
 
@@ -13,7 +11,7 @@ function game() {
         let currentScore = document.getElementById('score');
         let currentResult = document.getElementById('results');
 
-        if (gameRounds === 5) {
+        if (playerScore === 5 || computerScore === 5) {
             return determineWinner();
         }
 
@@ -76,7 +74,7 @@ function game() {
         } else {
             return winner.textContent = "You lost! Better luck next time."
         }
-    }
+    }it 
         
     buttons.forEach(button => {
         button.addEventListener('click', e => {
@@ -86,8 +84,6 @@ function game() {
          })
     })
         
-    
-    
 }
 
 game();
