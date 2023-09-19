@@ -7,23 +7,37 @@ function game() {
 
     //Runs the base logic of the game
     function playRound(playerSelection, computerSelection) {
+        let currentScore = document.getElementById('score');
+        let currentResult = document.getElementById('results');
         //IF playerSelection === computerSelection
         if (playerSelection === computerSelection) {
             //return tie
-            console.log(`It's a tie! You both chose ${playerSelection}.`)
-            return;
+            // console.log(`It's a tie! You both chose ${playerSelection}.`)
+            currentResult.textContent = `It's a tie! You both chose ${playerSelection}.`;
+            currentScore.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`; 
         } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-            console.log(`You win! ${playerSelection} beats ${computerSelection}`)
-            return playerScore++;
+            playerScore++;
+            currentResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+            currentScore.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`; 
+            // return playerScore++;
         } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-            console.log(`You win! ${playerSelection} beats ${computerSelection}`)
-            return playerScore++;
+            playerScore++
+            currentResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+            currentScore.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`; 
+            // console.log(`You win! ${playerSelection} beats ${computerSelection}`)
+            // return playerScore++;
         } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-            console.log(`You win! ${playerSelection} beats ${computerSelection}`)
-            return playerScore++;
+            playerScore++
+            currentResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+            currentScore.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`; 
+            // console.log(`You win! ${playerSelection} beats ${computerSelection}`)
+            // return playerScore++;
         } else {
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}`)
-            return computerScore++;
+            computerScore++
+            currentResult.textContent = `You lose! ${computerSelection} beats ${playerSelection}`
+            currentScore.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`; 
+            // console.log(`You lose! ${computerSelection} beats ${playerSelection}`)
+            // return computerScore++;
         }    
     }
 
@@ -48,26 +62,21 @@ function game() {
 
     //Returns the players selection
     function getPlayerSelection() {
-        return prompt("Choose Rock, Paper, or Scissors!");
+        const playerSelection = e.target.textContent;
+        return playerSelection;
     }
 
     //Normalizes the player input
     //IE -> Player types in rOcK function returns Rock
-    function normalizePlayerSelection(playerSelection) {
-        let firstLetter = playerSelection.slice(0,1).toUpperCase();
-        let restOfWord = playerSelection.slice(1).toLowerCase();
+    // function normalizePlayerSelection(playerSelection) {
+    //     let firstLetter = playerSelection.slice(0,1).toUpperCase();
+    //     let restOfWord = playerSelection.slice(1).toLowerCase();
 
-        let newPlayerSelection = firstLetter.concat(restOfWord);
+    //     let newPlayerSelection = firstLetter.concat(restOfWord);
 
-        return newPlayerSelection;
-    }
+    //     return newPlayerSelection;
+    // }
 
-    //Game requires 5 rounds, we call the playRound function 5x
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = normalizePlayerSelection(getPlayerSelection());
-        const computerSelection = getComputerSelection();
-        playRound(playerSelection, computerSelection);
-    }
 
     function determineWinner() {
         const gameScore = console.log(`Player score: ${playerScore}`) +
@@ -84,16 +93,29 @@ function game() {
         }
     }
 
-    determineWinner();
+    //add eventlisteners to your buttons;
+        const buttons = document.querySelectorAll('button');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', e => {
+                const playerSelection = e.target.textContent;
+                const computerSelection = getComputerSelection();
+                playRound(playerSelection, computerSelection);
+            })
+        })
+
+    //Game requires 5 rounds, we call the playRound function 5x
+    // for (let i = 0; i < 5; i++) {
+    //     const playerSelection = getPlayerSelection();
+    //     const computerSelection = getComputerSelection();
+    //     playRound(playerSelection, computerSelection);
+    // }
+
+    // determineWinner();
+    
 }
 
-//add eventlisteners to your buttons;
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach(button => {
-    button.addEventListener("click", e => {
-        console.log(e.target.textContent);
-    })
-})
-
 game();
+
+
+
