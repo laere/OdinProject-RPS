@@ -7,22 +7,17 @@ function game() {
 
     //Runs the base logic of the game
     function playRound(playerSelection, computerSelection) {
-        //Input check
-        
         //IF playerSelection === computerSelection
         if (playerSelection === computerSelection) {
             //return tie
             console.log(`It's a tie! You both chose ${playerSelection}.`)
             return;
-        //ELSE IF playerSelection === "Rock" and computerSelection === "Scissors"
         } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
             console.log(`You win! ${playerSelection} beats ${computerSelection}`)
             return playerScore++;
-        //ELSE IF playerSelection === "Paper" and computerSelection === "Rock"
         } else if (playerSelection === "Paper" && computerSelection === "Rock") {
             console.log(`You win! ${playerSelection} beats ${computerSelection}`)
             return playerScore++;
-        //ELSE IF playerSelection === "Scissors" and computerSelection === "Paper"
         } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
             console.log(`You win! ${playerSelection} beats ${computerSelection}`)
             return playerScore++;
@@ -91,5 +86,14 @@ function game() {
 
     determineWinner();
 }
+
+//add eventlisteners to your buttons;
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+    button.addEventListener("click", e => {
+        console.log(e.target.textContent);
+    })
+})
 
 game();
