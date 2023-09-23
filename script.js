@@ -5,10 +5,12 @@ function game() {
     //Create variable for computerscore
     let computerScore = 0;
 
-    //Runs the base logic of the game
+    const buttons = document.querySelectorAll('button');
+
     function playRound(playerSelection, computerSelection) {
         let currentScore = document.getElementById('score');
         let currentResult = document.getElementById('results');
+<<<<<<< HEAD
         //IF playerSelection === computerSelection
         if (playerSelection === computerSelection) {
             //return tie
@@ -38,7 +40,43 @@ function game() {
             currentScore.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`; 
             // console.log(`You lose! ${computerSelection} beats ${playerSelection}`)
             // return computerScore++;
+=======
+
+        if (playerScore === 5 || computerScore === 5) {
+            return determineWinner();
+        }
+
+        if (playerSelection === computerSelection) {
+            gameRounds++;
+            currentResult.textContent = `It's a tie! You both chose ${playerSelection}.`;
+            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`; 
+
+        } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
+            gameRounds++;
+            playerScore++;
+            currentResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`; 
+     
+        } else if (playerSelection === "Paper" && computerSelection === "Rock") {
+            gameRounds++;
+            playerScore++;
+            currentResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`; 
+
+        } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
+            gameRounds++;
+            playerScore++;
+            currentResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;  
+           
+        } else {
+            computerScore++;
+            gameRounds++;
+            currentResult.textContent = `You lose! ${computerSelection} beats ${playerSelection}`
+            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`; 
+>>>>>>> rps-ui
         }    
+        console.log(gameRounds)
     }
 
     //Returns the computers slection
@@ -46,7 +84,6 @@ function game() {
         //We want the computer to choose Rock, Paper, Scissors based on a range of numbers between 1-10.
         //Create variable that holds the randomized number
         let num = Math.floor(Math.random() * 10) + 1;
-        // console.log("NUM" + " " + num);
         //IF 1-3 ROCK
         if (num >= 1 && num <= 3) {
             return "Rock";
@@ -60,6 +97,7 @@ function game() {
 
     }
 
+<<<<<<< HEAD
     //Returns the players selection
     function getPlayerSelection() {
         const playerSelection = e.target.textContent;
@@ -78,19 +116,18 @@ function game() {
     // }
 
 
+=======
+>>>>>>> rps-ui
     function determineWinner() {
-        const gameScore = console.log(`Player score: ${playerScore}`) +
-                          console.log(`Computer score: ${computerScore}`);
+        const winner = document.getElementById('winner');
         if (playerScore === computerScore) {
-            console.log("It's a tie game!")
-            return gameScore
+            return winner.textContent = "It's a tie game!";
         } else if (playerScore > computerScore) {
-            console.log("You won the game! Congratulations!")
-            return gameScore
+            return winner.textContent = `You won with a score of ${playerScore}!`;
         } else {
-            console.log("You lost the game! Better luck next time!")
-            return gameScore
+            return winner.textContent = "You lost! Better luck next time."
         }
+<<<<<<< HEAD
     }
 
     //add eventlisteners to your buttons;
@@ -113,6 +150,18 @@ function game() {
 
     // determineWinner();
     
+=======
+    }it 
+        
+    buttons.forEach(button => {
+        button.addEventListener('click', e => {
+            const playerSelection = e.target.textContent;
+            const computerSelection = getComputerSelection();
+            playRound(playerSelection, computerSelection);
+         })
+    })
+        
+>>>>>>> rps-ui
 }
 
 game();
